@@ -1,0 +1,17 @@
+<div class="reserve-form">
+  <h3>Reserve This Item</h3>
+  <form method="post" action="mailto:connectme@thevsociety.com" enctype="text/plain">
+    <label for="name">Your Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="product">Product:</label>
+    <input type="text" id="product" name="product" value="{{ product.title }}" readonly>
+
+    <button type="submit" style="background:#d4af37; color:black; padding:10px 20px; border:none; cursor:pointer;">
+      Reserve
+    </button>
+  </form>
+</div>
