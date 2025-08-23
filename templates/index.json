@@ -63,25 +63,37 @@
         "heading": {
           "type": "heading",
           "settings": {
-            "heading": "Talk about your brand",
+            "heading": "Welcome to The V Society",
             "heading_size": "h1"
           }
         },
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p><br/>Indulge in a world where <strong>elegance meets empowerment</strong>.<br/><br/>At <em>The V Society</em>, we believe pleasure is power, and every detail should feel like luxury.<br/><br/>Our curated novelties are designed for women who embrace their sensuality, their strength, and their freedom.<br/><br/></p>"
+          }
+        },
+        "button_QFgLYP": {
+          "type": "button",
+          "settings": {
+            "button_label": "Explore the Collection",
+            "button_link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "button_label_2": "Reserve Your Experience",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
         "heading",
-        "text"
+        "text",
+        "button_QFgLYP"
       ],
       "settings": {
         "desktop_content_position": "center",
         "content_alignment": "center",
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "full_width": true,
         "padding_top": 40,
         "padding_bottom": 0
