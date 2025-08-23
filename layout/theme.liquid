@@ -372,5 +372,133 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <!-- AGE GATE: The V Society (Black & Gold) -->
+<style>
+  :root{
+    --vs-gold:#D4AF37;      /* gold */
+    --vs-black:#000000;     /* black background */
+    --vs-text:#f5f5f5;      /* body text on black */
+    --vs-muted:#c9c9c9;     /* muted text */
+  }
+  #vs-agegate{
+    position: fixed; inset: 0; z-index: 99999;
+    display: none; /* shown by script if needed */
+    background: rgba(0,0,0,.92);
+    backdrop-filter: blur(2px);
+  }
+  #vs-agegate[aria-hidden="false"]{ display: grid; place-items: center; }
+
+  .vs-agegate-card{
+    width: min(92vw, 480px);
+    background: var(--vs-black);
+    border: 1px solid rgba(212,175,55,.35);
+    border-radius: 18px;
+    padding: 28px 22px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    text-align: center;
+    color: var(--vs-text);
+    font-family: inherit;
+  }
+  .vs-agegate-logo{
+    width: 78px; height: 78px; margin: 0 auto 10px;
+    border: 1px solid rgba(212,175,55,.4); border-radius: 50%;
+    display: grid; place-items: center; color: var(--vs-gold); font-weight: 700; letter-spacing:.08em;
+  }
+  .vs-agegate-title{ font-size: clamp(22px, 2.8vw, 28px); margin:.4rem 0; color: var(--vs-gold); }
+  .vs-agegate-sub{ opacity:.85; margin:0 0 1rem; }
+  .vs-agegate-actions{ display:grid; gap:10px; margin-top: 12px; }
+  .vs-btn{
+    display:inline-block; padding: 12px 16px; border-radius: 999px;
+    font-weight: 600; cursor: pointer; border: 0;
+  }
+  .vs-btn--gold{ background: var(--vs-gold); color: #000; }
+  .vs-btn--ghost{ background: transparent; color: var(--vs-text); border:1px solid rgba(255,255,255,.25); }
+  .vs-note{ margin-top:10px; font-size:12px; color: var(--vs-muted); }
+  .vs-agegate-links{ margin-top:12px; font-size:12px; }
+  .vs-agegate-links a{ color: var(--vs-gold); text-decoration: underline; text-underline-offset: 2px; }
+  @media (hover:hover){
+    .vs-btn--gold:hover{ filter: brightness(1.05); transform: translateY(-1px); transition:.15s ease; }
+    .vs-btn--ghost:hover{ border-color: rgba(255,255,255,.45); }
+  }
+</style>
+
+<div id="vs-agegate" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="vs-agegate-title">
+  <div class="vs-agegate-card" role="document">
+    <div class="vs-agegate-logo" aria-hidden="true">V</div>
+    <h2 id="vs-agegate-title" class="vs-agegate-title">You must be 18+ to enter</h2>
+    <p class="vs-agegate-sub">The V Society offers luxury intimate goods and experiences. Please confirm your age.</p>
+
+    <div class="vs-agegate-actions">
+      <button class="vs-btn vs-btn--gold" id="vs-agegate-yes">I am 18 or older</button>
+      <button class="vs-btn vs-btn--ghost" id="vs-agegate-no">I am under 18</button>
+    </div>
+
+    <p class="vs-note">We use a cookie/local setting to remember your choice for 30 days.</p>
+    <div class="vs-agegate-links">
+      <a href="/policies/privacy-policy">Privacy</a> ·
+      <a href="/policies/terms-of-service">Terms</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // CONFIG
+  var REMEMBER_DAYS = 30; // how long to remember confirmation
+  var EXIT_URL = 'https://google.com'; // where minors are sent
+  // Optional: pages to SKIP the gate (e.g., checkout or policy pages)
+  var blockedPaths = [
+    '/checkout', '/account', '/policies/terms-of-service', '/policies/privacy-policy'
+  ];
+
+  // helpers
+  function setWithExpiry(key, value, days){
+    var now = new Date();
+    var item = { value: value, expiry: now.getTime() + days*24*60*60*1000 };
+    try{ localStorage.setItem(key, JSON.stringify(item)); }catch(e){}
+  }
+  function getWithExpiry(key){
+    try{
+      var itemStr = localStorage.getItem(key);
+      if(!itemStr) return null;
+      var item = JSON.parse(itemStr);
+      if(new Date().getTime() > item.expiry){ localStorage.removeItem(key); return null; }
+      return item.value;
+    }catch(e){ return null; }
+  }
+
+  // skip on certain paths
+  var path = location.pathname.toLowerCase();
+  if(blockedPaths.some(function(p){ return path.indexOf(p) === 0; })){ return; }
+
+  // show gate only if not verified
+  var verified = getWithExpiry('vs_age_verified');
+  var gate = document.getElementById('vs-agegate');
+  if(!verified && gate){
+    gate.setAttribute('aria-hidden','false');
+    document.documentElement.style.overflow = 'hidden'; // lock scroll
+  }
+
+  // wire buttons
+  var yes = document.getElementById('vs-agegate-yes');
+  var no  = document.getElementById('vs-agegate-no');
+  if(yes){
+    yes.addEventListener('click', function(){
+      setWithExpiry('vs_age_verified', 'true', REMEMBER_DAYS);
+      gate.setAttribute('aria-hidden','true');
+      document.documentElement.style.overflow = '';
+    });
+  }
+  if(no){
+    no.addEventListener('click', function(){
+      // Optional: clear any previous value
+      try{ localStorage.removeItem('vs_age_verified'); }catch(e){}
+      location.href = EXIT_URL;
+    });
+  }
+})();
+</script>
+<!-- /AGE GATE -->
+
   </body>
 </html>
