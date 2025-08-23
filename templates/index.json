@@ -105,9 +105,9 @@
       "settings": {
         "collection": "the-v-society-coming-soon",
         "products_to_show": 4,
-        "title": "Featured collection",
+        "title": "<strong>THE V SOCIETY COMING SOON</strong>",
         "heading_size": "h1",
-        "description": "",
+        "description": "<p> <strong>COMING SOON</strong> <br/><br/>Discover the debut of <strong>The V Society</strong> — a curated collection of lace, luxury, and liberation. Each piece is designed to embody elegance, empowerment, and timeless sophistication.</p><p>Be the first to experience exclusive styles that are almost here. Reserve your spot, stay connected, and prepare to indulge in a society where luxury meets liberation</p>",
         "show_description": false,
         "description_style": "body",
         "columns_desktop": 4,
