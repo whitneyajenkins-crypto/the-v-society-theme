@@ -1,54 +1,5 @@
 <!doctype html>
 <html class="js" lang="{{ request.locale.iso_code }}">
-  <style>
-/* Luxury Black Background */
-body {
-  background-color: #121212; /* softer black */
-  color: #F5C518; /* default gold text */
-}
-
-/* Optional gradient */
-body.luxury-bg {
-  background: linear-gradient(180deg, #0D0D0D 0%, #1A1A1A 100%);
-}
-
-/* Subtle shimmer overlay */
-body.luxury-bg::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255,255,255,0.02);
-  pointer-events: none;
-}
-</style>
-{% comment %} VS – custom gold theme styles {% endcomment %}
-<style id="vs-gold-theme">
-  :root{
-    --vs-gold:#C9A227;
-    --vs-gold-hi:#FFD700;
-    --vs-black-1:#0D0D0D;
-    --vs-black-2:#1A1A1A;
-  }
-  .luxury-bg{
-    background:linear-gradient(135deg,var(--vs-black-1),var(--vs-black-2));
-    color:var(--vs-gold-hi);
-  }
-  .gold-text{
-    background:linear-gradient(90deg,var(--vs-gold),var(--vs-gold-hi));
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-    font-weight:700;
-  }
-  .btn-gold{
-    background:linear-gradient(90deg,var(--vs-gold),var(--vs-gold-hi));
-    border:0;color:#000;padding:12px 24px;border-radius:6px;
-    font-weight:600;text-transform:uppercase;transition:transform .2s;
-  }
-  .btn-gold:hover{
-    transform:scale(1.05);
-    background:linear-gradient(90deg,var(--vs-gold-hi),var(--vs-gold));
-  }
-</style>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -454,7 +405,7 @@ body.luxury-bg::before {
     </script>
   </head>
 
-  <body class="luxury-bg gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
