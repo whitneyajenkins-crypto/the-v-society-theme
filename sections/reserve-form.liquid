@@ -1,8 +1,20 @@
-{% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
-  <input type="hidden" name="contact[subject]" value="Reserve Request">
-  <input type="hidden" name="contact[Source]" value="The V Society Website">
+<h3 class="vs-reserve-heading">Reserve This Item</h3>
+<p class="vs-reserve-tagline">We’ll confirm your request by email within 24 hours.</p>
 
-  <input id="vs-reserve-email" class="vs-input" type="email" name="contact[email]" placeholder="Enter your email" required>
+<div class="vs-reserve">
+  {% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
+    <input type="hidden" name="contact[subject]" value="Reserve Request">
+    <input type="hidden" name="contact[Source]" value="The V Society Website">
 
-  <button type="submit" class="vs-btn vs-btn-gold">Reserve Now</button>
-{% endform %}
+    <input 
+      id="vs-reserve-email" 
+      class="vs-input" 
+      type="email" 
+      name="contact[email]" 
+      placeholder="Enter your email" 
+      required
+    >
+
+    <button type="submit" class="vs-btn-gold">Reserve Now</button>
+  {% endform %}
+</div>

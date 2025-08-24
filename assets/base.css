@@ -3640,4 +3640,5 @@ details-disclosure > details {
   .vs-form{ flex-direction:column; align-items:stretch; }
   .vs-btn{ width:100%; }
 }
+.product-form,.shopify-payment-button,form[action*="/cart"]{display:none!important;}
 
