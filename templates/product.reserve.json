@@ -29,12 +29,6 @@
     },
     "reserve": {
       "type": "reserve-form",
-      "custom_css": [
-        ".vs-form {display: flex; gap: 10px; justify-content: center; margin-top: 15px;}",
-        ".vs-input {padding: 12px 16px; border: 1px solid rgba(255,255,255,.2); border-radius: 8px; background: #111; color: #eee; width: 280px;}",
-        ".vs-input:focus {outline: none; border-color: #d4af37; box-shadow: 0 0 0 2px rgba(212,175,55,.3);}",
-        ".vs-btn--gold {padding: 12px 20px; border: none; border-radius: 8px; background: linear-gradient(135deg, #d4af37, #b68c2a); color: #141414; font-weight: 600; cursor: pointer; text-transform: uppercase;}"
-      ],
       "settings": {}
     }
   },
