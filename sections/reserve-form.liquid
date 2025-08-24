@@ -1,14 +1,8 @@
-{% if form.posted_successfully? %}
-  <p class="vs-success">Thank you — we’ll confirm availability by email.</p>
-{% else %}
-  {% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
-    <!-- Hidden fields auto-sent -->
-    <input type="hidden" name="contact[Subject]" value="Reserve Request">
-    <input type="hidden" name="contact[Source]" value="The V Society Website">
+{% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
+  <input type="hidden" name="contact[subject]" value="Reserve Request">
+  <input type="hidden" name="contact[Source]" value="The V Society Website">
 
-    <!-- Only visible field -->
-    <input id="vs-reserve-email" class="vs-input" type="email" name="contact[email]" placeholder="Enter your email" required>
+  <input id="vs-reserve-email" class="vs-input" type="email" name="contact[email]" placeholder="Enter your email" required>
 
-    <button type="submit" class="vs-btn vs-btn--gold">Reserve Now</button>
-  {% endform %}
-{% endif %}
+  <button type="submit" class="vs-btn vs-btn-gold">Reserve Now</button>
+{% endform %}
