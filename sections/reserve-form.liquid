@@ -1,43 +1,29 @@
-{% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
-
-  {%- if form.posted_successfully? -%}
-    <p class="vs-success">✅ Thank you — your reservation request was sent. We’ll contact you shortly.</p>
-  {%- endif -%}
-
-  {%- if form.errors -%}
-    <p class="vs-error">⚠️ Please fix the errors and try again.</p>
-  {%- endif -%}
-
-  <!-- Hidden product context -->
-  <input type="hidden" name="contact[Tags]" value="Reserve Request">
-  <input type="hidden" name="contact[Product]" value="{{ product.title }}">
-  <input type="hidden" name="contact[URL]" value="{{ product.url }}">
-  <input type="hidden" name="contact[Variant]" value="{{ product.selected_or_first_available_variant.title }}">
-
-  <!-- Visible form fields -->
-  <label class="vs-label" for="vs-name">Full name</label>
-  <input id="vs-name" class="vs-input" type="text" name="contact[Name]" required>
-
-  <label class="vs-label" for="vs-email">Email</label>
-  <input id="vs-email" class="vs-input" type="email" name="contact[email]" required>
-
-  <label class="vs-label" for="vs-phone">Phone (optional)</label>
-  <input id="vs-phone" class="vs-input" type="tel" name="contact[Phone]">
-
-  <label class="vs-label" for="vs-notes">Notes / preferences</label>
-  <textarea id="vs-notes" class="vs-textarea" name="contact[Body]" rows="4"
-    placeholder="Sizing, color, delivery preference, etc."></textarea>
-
-  <!-- Submit -->
-  <button type="submit" class="vs-btn">
-    {{ section.settings.button_label | default: 'Reserve Now' }}
-  </button>
-
-  <!-- Optional secondary link -->
-  {% if section.settings.secondary_link != blank %}
-    <a class="vs-link" href="{{ section.settings.secondary_link }}">
-      {{ section.settings.secondary_label }}
-    </a>
-  {% endif %}
-
-{% endform %}
+.vs-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+.vs-input {
+  padding: 12px 16px;
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  background: #111;
+  color: #eee;
+  width: 280px;
+}
+.vs-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 2px rgba(212,175,55,.3);
+}
+.vs-btn--gold {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #d4af37, #b68c2a);
+  color: #141414;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+}
