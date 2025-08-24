@@ -390,5 +390,10 @@
         }
       }
     }
+  },
+  "platform_customizations": {
+    "custom_css": [
+      "/* Hide cart + dynamic checkout on product pages */.product-form,.shopify-payment-button,form[action*=\"/cart\"] {display: none !important;}"
+    ]
   }
 }
