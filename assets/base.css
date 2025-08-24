@@ -3595,3 +3595,48 @@ details-disclosure > details {
     transform: translateX(100%) scaleX(0);
   }
 }
+/* --- V Society: Reserve Form styling --- */
+.vs-form{
+  display:flex; align-items:center; gap:10px;
+  justify-content:center; margin:18px auto;
+  max-width:min(680px, 92vw);
+}
+
+/* Input field */
+.vs-input{
+  padding:12px 16px; border-radius:9999px;
+  border:1px solid rgba(212,175,55,.45);        /* gold border */
+  background:rgba(20,20,20,.9);                 /* near-black to match theme */
+  color:#eee; width:340px; line-height:1.2;
+  box-shadow:0 0 0 1px rgba(0,0,0,.25) inset;
+}
+.vs-input::placeholder{ color:rgba(238,238,238,.55); letter-spacing:.02em; }
+.vs-input:focus{
+  outline:none;
+  border-color:#d4af37;
+  box-shadow:0 0 0 2px rgba(212,175,55,.28), 0 2px 8px rgba(0,0,0,.35);
+}
+
+/* Button */
+.vs-btn{ display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 22px; border-radius:9999px; font-weight:600;
+  text-transform:uppercase; border:0; cursor:pointer; white-space:nowrap;
+}
+.vs-btn-gold{
+  background:linear-gradient(135deg,#d4af37,#b68c2a);
+  color:#141414;
+  box-shadow:inset 0 0 0 1px #e5c566, 0 8px 18px rgba(0,0,0,.25);
+  transition:transform .15s ease, filter .15s ease;
+}
+.vs-btn-gold:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+.vs-btn-gold:active{ transform:translateY(0); filter:brightness(.98); }
+
+/* Mobile: make the input fill and keep button next to it or stack if tight */
+@media (max-width: 720px){
+  .vs-form{ gap:8px; padding-inline:12px; }
+  .vs-input{ flex:1; width:auto; }
+}
+@media (max-width: 420px){
+  .vs-form{ flex-direction:column; align-items:stretch; }
+  .vs-btn{ width:100%; }
+}
