@@ -1,20 +1,46 @@
-<h3 class="vs-reserve-heading">Reserve This Item</h3>
-<p class="vs-reserve-tagline">We’ll confirm your request by email within 24 hours.</p>
+{% comment %}
+  Reserve Form section (The V Society)
+  - Uses a color scheme picker
+  - Also force-sets the Shopify wrapper background to dark (scoped by section.id)
+{% endcomment %}
 
-<div class="vs-reserve">
-  {% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
-    <input type="hidden" name="contact[subject]" value="Reserve Request">
-    <input type="hidden" name="contact[Source]" value="The V Society Website">
+{% style %}
+  /* Force THIS section's wrapper to dark, even if parent uses a light scheme */
+  #shopify-section-{{ section.id }}{
+    background:#111 !important;
+  }
+  #shopify-section-{{ section.id }} .gradient,
+  #shopify-section-{{ section.id }} .color-background-1,
+  #shopify-section-{{ section.id }} .color-scheme,
+  #shopify-section-{{ section.id }} .content-for-layout{
+    background:#111 !important;
+  }
+{% endstyle %}
 
-    <input 
-      id="vs-reserve-email" 
-      class="vs-input" 
-      type="email" 
-      name="contact[email]" 
-      placeholder="Enter your email" 
-      required
-    >
+<section class="vs-reserve-block color-{{ section.settings.color_scheme }} gradient" role="region" aria-label="Reserve">
+  <div class="vs-reserve">
+    <h3 class="vs-reserve-heading">Reserve This Item</h3>
+    <p class="vs-reserve-tagline">We’ll confirm your request by email within 24 hours.</p>
 
-    <button type="submit" class="vs-btn-gold">Reserve Now</button>
-  {% endform %}
-</div>
+    {% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
+      <input type="hidden" name="contact[subject]" value="Reserve Request">
+      <input type="hidden" name="contact[source]" value="The V Society Website">
+      {%- if product and product.title -%}
+        <input type="hidden" name="contact[body]" value="Reserve request for: {{ product.title | escape }}">
+      {%- endif -%}
+
+      <input id="vs-reserve-email" class="vs-input" type="email" name="contact[email]" placeholder="Enter your email" required>
+      <button type="submit" class="vs-btn vs-btn-gold">Reserve Now</button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Reserve Form",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
+  ],
+  "presets": [{ "name": "Reserve Form" }]
+}
+{% endschema %}
