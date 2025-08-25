@@ -46,7 +46,7 @@
       "settings": {
         "image": "shopify://shop_images/file_00000000b9c461f6af17f2d5cd4ed104_3.png",
         "image_overlay_opacity": 80,
-        "image_height": "large",
+        "image_height": "small",
         "image_behavior": "ambient",
         "desktop_content_position": "bottom-center",
         "desktop_content_alignment": "center",
@@ -105,7 +105,7 @@
       "settings": {
         "collection": "vibrators",
         "products_to_show": 4,
-        "title": "<strong>THE V SOCIETY COMING SOON</strong>",
+        "title": "",
         "heading_size": "h1",
         "description": "<p>Discover the debut of <strong>The V Society</strong> — a curated collection of lace, luxury, and liberation. Each piece is designed to embody elegance, empowerment, and timeless sophistication.</p><p>Be the first to experience exclusive styles that are almost here. Reserve your spot, stay connected, and prepare to indulge in a society where luxury meets liberation</p>",
         "show_description": false,
