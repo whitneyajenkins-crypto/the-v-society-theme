@@ -1,46 +1,79 @@
-{% comment %}
-  Reserve Form section (The V Society)
-  - Uses a color scheme picker
-  - Also force-sets the Shopify wrapper background to dark (scoped by section.id)
-{% endcomment %}
+{% comment %} Reserve Form (The V Society) {% endcomment %}
 
-{% style %}
-  /* Force THIS section's wrapper to dark, even if parent uses a light scheme */
-  #shopify-section-{{ section.id }}{
-    background:#111 !important;
-  }
-  #shopify-section-{{ section.id }} .gradient,
-  #shopify-section-{{ section.id }} .color-background-1,
-  #shopify-section-{{ section.id }} .color-scheme,
-  #shopify-section-{{ section.id }} .content-for-layout{
-    background:#111 !important;
-  }
-{% endstyle %}
+<style>
+/* Force this section and its wrappers to be dark and remove seam */
+#shopify-section-{{ section.id }},
+#shopify-section-{{ section.id }} .page-width,
+#shopify-section-{{ section.id }} .section{
+  background:#111 !important;
+}
+#shopify-section-{{ section.id }}{ margin-top:-1px; } /* tucks under product block */
 
-<section class="vs-reserve-block color-{{ section.settings.color_scheme }} gradient" role="region" aria-label="Reserve">
+/* Layout container */
+.vs-reserve-block{ background:#111; padding:24px 0; }
+.vs-reserve{ max-width:min(680px,95vw); margin:0 auto; padding:0 16px; }
+
+/* Heading + tagline */
+.vs-reserve-heading{
+  margin:0 0 6px;
+  font-size:clamp(22px,2.2vw,28px);
+  font-weight:700;
+  color:#d4af37; /* gold */
+  letter-spacing:.02em;
+}
+.vs-reserve-tagline{
+  margin:0 0 14px;
+  font-size:clamp(16px,1.9vw,18px);
+  color:rgba(238,238,238,.9);
+}
+
+/* Form + controls */
+.vs-form{ display:flex; gap:10px; justify-content:center; margin:18px auto; max-width:min(680px,92vw); }
+.vs-input{
+  padding:12px 16px;
+  border-radius:9999px;
+  border:1px solid rgba(212,175,55,.45); /* soft gold */
+  background:rgba(20,20,20,.92); /* near-black */
+  color:#eee;
+  width:340px; line-height:1.2;
+  box-shadow:0 0 1px 0 rgba(0,0,0,.25) inset;
+}
+.vs-input::placeholder{ color:rgba(238,238,238,.55); letter-spacing:.02em; }
+
+/* Button */
+.vs-btn{ display:inline-flex; align-items:center; justify-content:center; padding:12px 22px; border-radius:9999px; font-weight:600; text-transform:uppercase; border:0; cursor:pointer; white-space:nowrap; }
+.vs-btn-gold{
+  background:linear-gradient(135deg,#d4af37,#b68c2a);
+  color:#141414;
+  box-shadow:inset 0 0 1px #ec5c66, 0 8px 18px rgba(0,0,0,.25);
+  transition:transform .15s ease, filter .15s ease;
+}
+.vs-btn-gold:hover{ filter:brightness(1.05); transform:translateY(-1px); }
+.vs-btn-gold:active{ filter:brightness(.98); transform:translateY(0); }
+
+/* Mobile tweaks */
+@media (max-width:720px){
+  .vs-form{ gap:8px; padding-inline:12px; }
+  .vs-input{ flex:1; width:auto; }
+}
+@media (max-width:420px){
+  .vs-form{ flex-direction:column; align-items:stretch; }
+  .vs-btn{ width:100%; }
+}
+</style>
+
+<section class="vs-reserve-block">
   <div class="vs-reserve">
     <h3 class="vs-reserve-heading">Reserve This Item</h3>
     <p class="vs-reserve-tagline">We’ll confirm your request by email within 24 hours.</p>
 
     {% form 'contact', id: 'vs-reserve-form', class: 'vs-form', novalidate: 'novalidate' %}
       <input type="hidden" name="contact[subject]" value="Reserve Request">
-      <input type="hidden" name="contact[source]" value="The V Society Website">
-      {%- if product and product.title -%}
-        <input type="hidden" name="contact[body]" value="Reserve request for: {{ product.title | escape }}">
-      {%- endif -%}
-
+      {% if product and product.title %}
+        <input type="hidden" name="contact[body]" value="Reserve request for: {{ product.title | strip_html }}">
+      {% endif %}
       <input id="vs-reserve-email" class="vs-input" type="email" name="contact[email]" placeholder="Enter your email" required>
       <button type="submit" class="vs-btn vs-btn-gold">Reserve Now</button>
     {% endform %}
   </div>
 </section>
-
-{% schema %}
-{
-  "name": "Reserve Form",
-  "settings": [
-    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-2" }
-  ],
-  "presets": [{ "name": "Reserve Form" }]
-}
-{% endschema %}
