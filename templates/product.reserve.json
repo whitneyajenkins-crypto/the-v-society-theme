@@ -20,15 +20,18 @@
           "type": "price",
           "settings": {}
         },
-        "description_RPkXiJ": {
-          "type": "description",
-          "settings": {}
+        "text_mDTy4V": {
+          "type": "text",
+          "settings": {
+            "text": "Text block",
+            "text_style": "body"
+          }
         }
       },
       "block_order": [
         "title_DkGXhq",
         "price_zRtRCB",
-        "description_RPkXiJ"
+        "text_mDTy4V"
       ],
       "settings": {
         "enable_sticky_info": true,
