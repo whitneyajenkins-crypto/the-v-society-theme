@@ -19,6 +19,9 @@
     },
     "product-grid": {
       "type": "main-collection-product-grid",
+      "custom_css": [
+        "@media (max-width: 749px) {.pagination-wrapper, .pagination {position: static !important; clear: both !important; display: block !important; margin-top: 16px !important; z-index: 1 !important; } .card--media, .card__inner, .media, .grid__item {z-index: 0 !important; }}"
+      ],
       "settings": {
         "products_per_page": 8,
         "columns_desktop": 4,
