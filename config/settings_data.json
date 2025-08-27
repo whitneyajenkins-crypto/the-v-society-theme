@@ -116,7 +116,7 @@
     "predictive_search_enabled": true,
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
-    "currency_code_enabled": true,
+    "currency_code_enabled": false,
     "cart_type": "notification",
     "show_vendor": false,
     "show_cart_note": false,
@@ -393,7 +393,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "@media (max-width:768px){.template-collection .pagination, .template-collection [class*=\"pagination\"]{position:static!important;clear:both!important;margin:16px 0 24px!important;z-index:1!important } .template-collection .slider-counter--numbers{display:none!important}}"
+      "@media (max-width: 768px) {.template-collection .pagination, .template-collection [class*=\"pagination\"] {position: static !important; clear: both !important; margin: 16px 0 24px !important; z-index: 1 !important; } .template-collection .slider-counter--numbers {display: none !important; }}"
     ]
   }
 }
